@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaRobot } from "react-icons/fa";
-import { SiNextdotjs, SiTailwindcss, SiTypescript, SiVercel } from "react-icons/si";
+import { SiNextdotjs, SiTailwindcss, SiTypescript, SiJson } from "react-icons/si";
 
 export default function Skills() {
   const skills = [
@@ -12,8 +12,8 @@ export default function Skills() {
     { name: "Node.js", icon: <FaNodeJs className="text-green-500 text-5xl" /> },
     { name: "Tailwind", icon: <SiTailwindcss className="text-teal-400 text-5xl" /> },
     { name: "Git", icon: <FaGitAlt className="text-red-500 text-5xl" /> },
-    { name: "GitHub", icon: <FaGithub className="text-gray-800 dark:text-white text-5xl" /> }, // ✅ Added GitHub
-    { name: "Vercel", icon: <SiVercel className="text-black dark:text-white text-5xl" /> }, // ✅ Added Vercel
+    { name: "GitHub", icon: <FaGithub className="text-gray-800 dark:text-white text-5xl" /> },
+    { name: "JSON", icon: <SiJson className="text-amber-600 dark:text-yellow-300 text-5xl" /> },
     { name: "TypeScript", icon: <SiTypescript className="text-blue-600 text-5xl" /> },
     { name: "AI Tools", icon: <FaRobot className="text-purple-500 text-5xl" /> },
   ];

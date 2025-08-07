@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-
 const scrollToSection = (id) => {
   const section = document.querySelector(id);
   if (section) {
@@ -13,9 +12,12 @@ export default function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const [activeLink, setActiveLink] = useState("#hero");
 
+  
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle("dark", !darkMode);
+    setDarkMode((prevDarkMode) => {
+      document.documentElement.classList.toggle("dark", !prevDarkMode);
+      return !prevDarkMode;
+    });
   };
 
   const links = [
@@ -23,7 +25,6 @@ export default function Navbar() {
     { id: "#skills", label: "Skills" },
     { id: "#contact", label: "Contact" },
   ];
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,7 +70,6 @@ export default function Navbar() {
         Portfolio
       </motion.h1>
 
-      
       <ul className="hidden md:flex gap-8 text-gray-700 font-semibold dark:text-gray-200">
         {links.map((link) => (
           <motion.li
