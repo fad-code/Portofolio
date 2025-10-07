@@ -18,6 +18,19 @@ import {
 
 const projects = [
   {
+    title: "Kamar Merona",
+    icon: () => (
+      <div className="relative flex items-center justify-center w-32 h-32">
+        <div className="absolute inset-0 rounded-full bg-pink-200/50 blur-md" />
+        <div className="relative flex flex-col items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 text-white font-serif text-lg shadow-lg">
+          KM
+        </div>
+      </div>
+    ),
+    link: "https://kamarmerona.vercel.app/",
+    desc: "My own business website (still on progress).",
+  },
+  {
     title: "Google Flight Imitate",
     icon: Plane,
     link: "https://flights-hazel.vercel.app/",
@@ -145,13 +158,19 @@ export default function Projects() {
               >
                 <div className="h-[55%] flex items-center justify-center">
                   <div className="rounded-2xl bg-pink-50 dark:bg-pink-500/10 p-8">
-                    <Icon className="w-32 h-32 text-pink-600 dark:text-pink-400" />
+                    {typeof Icon === "function" ? (
+                      <Icon />
+                    ) : (
+                      <Icon className="w-32 h-32 text-pink-600 dark:text-pink-400" />
+                    )}
                   </div>
                 </div>
 
                 <div className="h-[45%] flex flex-col justify-between p-6 text-center">
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-semibold mb-2">{projects[idx].title}</h3>
+                    <h3 className="text-xl sm:text-2xl font-semibold mb-2">
+                      {projects[idx].title}
+                    </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-snug max-w-[36ch] mx-auto min-h-[44px]">
                       {projects[idx].desc}
                     </p>
@@ -195,4 +214,5 @@ export default function Projects() {
     </section>
   );
 }
+
 
