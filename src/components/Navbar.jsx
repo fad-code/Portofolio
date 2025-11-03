@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+// src/components/Navbar.jsx
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
@@ -6,14 +6,14 @@ export default function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const [activeLink, setActiveLink] = useState("#hero");
   const navRef = useRef(null);
-  const [navH, setNavH] = useState(72); // default fallback
+  const [navH, setNavH] = useState(72); // fallback default
 
   // ukur tinggi navbar saat mount & saat resize
   useEffect(() => {
     const measure = () => {
       const h = navRef.current?.offsetHeight ?? 72;
       setNavH(h);
-      // opsional: simpan ke CSS var kalau mau dipakai di tempat lain
+      // opsional: expose sebagai CSS var
       document.documentElement.style.setProperty("--nav-h", `${h}px`);
     };
     measure();
@@ -25,35 +25,15 @@ export default function Navbar() {
     const el = document.querySelector(id);
     if (!el) return;
     const y =
-      el.getBoundingClientRect().top + window.scrollY - (navH + 16); // 16px buffer
+      el.getBoundingClientRect().top + window.scrollY - (navH + 16); // buffer 16px
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
   const toggleDarkMode = () => {
     setDarkMode((prev) => {
-      document.documentElement.classList.toggle("dark", !prev);
-      return !prev;
-=======
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-
-const scrollToSection = (id) => {
-  const section = document.querySelector(id);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth" });
-  }
-};
-
-export default function Navbar() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [activeLink, setActiveLink] = useState("#hero");
-
-  
-  const toggleDarkMode = () => {
-    setDarkMode((prevDarkMode) => {
-      document.documentElement.classList.toggle("dark", !prevDarkMode);
-      return !prevDarkMode;
->>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
+      const next = !prev;
+      document.documentElement.classList.toggle("dark", next);
+      return next;
     });
   };
 
@@ -63,71 +43,50 @@ export default function Navbar() {
     { id: "#contact", label: "Contact" },
   ];
 
-<<<<<<< HEAD
   // highlight aktif berdasarkan posisi scroll + offset nav
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
+
+      // state "hero" saat masih di atas
       const hero = document.querySelector("#hero");
-      if (hero && scrollY < hero.offsetHeight - (navH + 60)) {
-        setActiveLink("#hero");
+      if (hero) {
+        const heroBottom = hero.offsetTop + hero.offsetHeight;
+        if (scrollY + navH + 60 < heroBottom) {
+          setActiveLink("#hero");
+        }
       }
 
-      links.forEach((link) => {
+      // deteksi setiap section
+      for (const link of links) {
         const sec = document.querySelector(link.id);
-        if (!sec) return;
+        if (!sec) continue;
         const top = sec.offsetTop - (navH + 80);
         const bottom = top + sec.offsetHeight;
         if (scrollY >= top && scrollY < bottom) {
           setActiveLink(link.id);
+          break;
         }
-      });
+      }
     };
-    handleScroll();
+
+    handleScroll(); // sync awal
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [links, navH]);
+  }, [navH]);
 
   return (
     <motion.nav
       ref={navRef}
-=======
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const hero = document.querySelector("#hero");
-      const sections = links.map((link) => document.querySelector(link.id));
-
-      if (hero && scrollPosition < hero.offsetHeight - 200) {
-        setActiveLink("#hero");
-      }
-
-      sections.forEach((section, index) => {
-        if (
-          section &&
-          scrollPosition >= section.offsetTop - 150 &&
-          scrollPosition < section.offsetTop + section.offsetHeight - 150
-        ) {
-          setActiveLink(links[index].id);
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  return (
-    <motion.nav
->>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
-      className="flex justify-between items-center px-6 md:px-12 py-2 fixed w-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg shadow-lg z-50"
+      className="flex justify-between items-center px-6 md:px-12 py-2 fixed w-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg shadow-lg z-50 border-b border-pink-100/60 dark:border-neutral-800"
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <motion.h1
         className="text-xl md:text-2xl font-bold text-pink-600 dark:text-pink-400 cursor-pointer"
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           setActiveLink("#hero");
           scrollToSection("#hero");
         }}
@@ -141,8 +100,8 @@ export default function Navbar() {
         {links.map((link) => (
           <motion.li
             key={link.id}
-            whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.06 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
             <a
@@ -167,9 +126,10 @@ export default function Navbar() {
       <motion.button
         onClick={toggleDarkMode}
         className="ml-4 px-4 py-2 bg-pink-600 text-white rounded-lg shadow-md hover:bg-pink-700 dark:bg-pink-400 dark:hover:bg-pink-500 transition"
-        whileTap={{ scale: 0.9 }}
+        whileTap={{ scale: 0.95 }}
         whileHover={{ scale: 1.05 }}
         transition={{ type: "spring", stiffness: 300 }}
+        aria-label="Toggle dark mode"
       >
         {darkMode ? "Light" : "Dark"}
       </motion.button>
