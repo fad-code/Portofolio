@@ -1,22 +1,47 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
+<<<<<<< HEAD
 import { ArrowLeft, ArrowRight, Bot, ChefHat, Car, Shirt } from "lucide-react"; 
 // ↑ nambah icon "Shirt" buat fashion look
 
 // === 4 PROYEK UTAMA (semi–case study copy) ===
+=======
+import {
+  ArrowLeft,
+  ArrowRight,
+  Plane,
+  Languages,
+  Bot,
+  Clapperboard,
+  Map,
+  ChefHat,
+  Car,
+  Bird,
+  Sandwich,
+  Brain,
+} from "lucide-react";
+
+>>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
 const projects = [
   {
     title: "Kamar Merona",
     icon: () => (
       <div className="relative flex items-center justify-center w-32 h-32">
+<<<<<<< HEAD
         <div className="absolute inset-0 rounded-full bg-pink-100/70 blur-md" />
         <div className="relative flex flex-col items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 text-white font-serif text-lg shadow-lg">
           <Shirt className="w-14 h-14 text-white" />
+=======
+        <div className="absolute inset-0 rounded-full bg-pink-200/50 blur-md" />
+        <div className="relative flex flex-col items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 text-white font-serif text-lg shadow-lg">
+          KM
+>>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
         </div>
       </div>
     ),
     link: "https://kamarmerona.vercel.app/",
+<<<<<<< HEAD
     ctaLabel: "View Project",
     desc:
       "Feminine fashion brand website built with Next.js & Tailwind — elegant, fast, and responsive.",
@@ -34,13 +59,74 @@ const projects = [
     link: "https://chefku.vercel.app/",
     desc:
       "Type ingredients → get recipes. Pantry-first suggestions, steps, and quick tips for home cooks.",
+=======
+    desc: "My own business website (still on progress).",
+  },
+  {
+    title: "Google Flight Imitate",
+    icon: Plane,
+    link: "https://flights-hazel.vercel.app/",
+    desc: "Flight search UI inspired by Google Flights with airports, dates, and crisp results.",
+  },
+  {
+    title: "Translator",
+    icon: Languages,
+    link: "https://polly-kappa-ten.vercel.app/",
+    desc: "Minimal translator with clean UX and instant feedback for smooth multi-language flow.",
+>>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
   },
   {
     title: "Travel AI",
     icon: Bot,
     link: "https://jet-set-kitty.vercel.app/",
+<<<<<<< HEAD
     desc:
       "Trip ideation assistant that proposes cities, POIs, and day plans for fast, fun itineraries.",
+=======
+    desc: "Trip brainstormer that suggests places, plans, and vibes for fast, fun itineraries.",
+  },
+  {
+    title: "Movie Recommendation App",
+    icon: Clapperboard,
+    link: "https://movie-mania-ten-delta.vercel.app/",
+    desc: "Tell it your mood and era; get film picks with posters and quick summaries.",
+  },
+  {
+    title: "Travel Journal",
+    icon: Map,
+    link: "https://travelmania-eight.vercel.app/",
+    desc: "A tidy travel diary to log trips, photos, and memories with a mobile-first layout.",
+  },
+  {
+    title: "Chef AI",
+    icon: ChefHat,
+    link: "https://chefku.vercel.app/",
+    desc: "Turn ingredients into recipes—fast, friendly, and tasty.",
+  },
+  {
+    title: "Vans Rental",
+    icon: Car,
+    link: "https://vanku.vercel.app/",
+    desc: "Browse and book vans with clear pricing, filters, and smooth checkout.",
+  },
+  {
+    title: "Twitt",
+    icon: Bird,
+    link: "https://twitt-lac.vercel.app/",
+    desc: "Playful microblog UI: compose, feed, and interactions with a snappy feel.",
+  },
+  {
+    title: "Jimmy Burger",
+    icon: Sandwich,
+    link: "https://order-kuy.vercel.app/",
+    desc: "Food ordering flow—menu, cart, and checkout designed for speed and clarity.",
+  },
+  {
+    title: "Mental Journey",
+    icon: Brain,
+    link: "https://mental-journey.netlify.app/",
+    desc: "Reflective writing space with gentle typography to track thoughts and progress.",
+>>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
   },
 ];
 
@@ -95,7 +181,10 @@ export default function Projects() {
         >
           {windowIdx.map((idx, i) => {
             const Icon = projects[idx].icon;
+<<<<<<< HEAD
             const cta = projects[idx].ctaLabel || "View Project";
+=======
+>>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
             return (
               <motion.article
                 key={idx}
@@ -128,14 +217,21 @@ export default function Projects() {
                       {projects[idx].desc}
                     </p>
                   </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
                   <a
                     href={projects[idx].link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mx-auto inline-flex items-center justify-center gap-2 rounded-full bg-pink-600 px-6 py-3 text-base font-semibold text-white shadow-lg hover:bg-pink-700 hover:scale-105 hover:shadow-pink-400/50 transition-all focus:outline-none focus:ring-4 focus:ring-pink-300 dark:focus:ring-pink-600"
                   >
+<<<<<<< HEAD
                     {cta}
+=======
+                    View Project
+>>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
                     <ArrowRight className="w-5 h-5" />
                   </a>
                 </div>
@@ -168,3 +264,8 @@ export default function Projects() {
     </section>
   );
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365

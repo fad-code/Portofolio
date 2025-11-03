@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
@@ -32,6 +33,27 @@ export default function Navbar() {
     setDarkMode((prev) => {
       document.documentElement.classList.toggle("dark", !prev);
       return !prev;
+=======
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+
+const scrollToSection = (id) => {
+  const section = document.querySelector(id);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+export default function Navbar() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [activeLink, setActiveLink] = useState("#hero");
+
+  
+  const toggleDarkMode = () => {
+    setDarkMode((prevDarkMode) => {
+      document.documentElement.classList.toggle("dark", !prevDarkMode);
+      return !prevDarkMode;
+>>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
     });
   };
 
@@ -41,6 +63,7 @@ export default function Navbar() {
     { id: "#contact", label: "Contact" },
   ];
 
+<<<<<<< HEAD
   // highlight aktif berdasarkan posisi scroll + offset nav
   useEffect(() => {
     const handleScroll = () => {
@@ -68,6 +91,35 @@ export default function Navbar() {
   return (
     <motion.nav
       ref={navRef}
+=======
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const hero = document.querySelector("#hero");
+      const sections = links.map((link) => document.querySelector(link.id));
+
+      if (hero && scrollPosition < hero.offsetHeight - 200) {
+        setActiveLink("#hero");
+      }
+
+      sections.forEach((section, index) => {
+        if (
+          section &&
+          scrollPosition >= section.offsetTop - 150 &&
+          scrollPosition < section.offsetTop + section.offsetHeight - 150
+        ) {
+          setActiveLink(links[index].id);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <motion.nav
+>>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
       className="flex justify-between items-center px-6 md:px-12 py-2 fixed w-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg shadow-lg z-50"
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}

@@ -16,6 +16,16 @@ const contacts = [
     value: "github.com/fad-code",
     color: "text-gray-800 dark:text-gray-200",
   },
+<<<<<<< HEAD
+=======
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/muhammad-fadhilah/",
+    icon: Linkedin,
+    value: "muhammad-fadhilah",
+    color: "text-blue-700 dark:text-blue-400",
+  },
+>>>>>>> 569b4ed7ec7c6e954b373d97f2c0548979f4a365
 ];
 
 export default function Contact() {
