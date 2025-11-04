@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
 
 export default function Hero() {
-  const scrollToSection = (id) => {
-    const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = (selector) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    const header = document.querySelector("header");
+    const offset = (header?.offsetHeight || 0) + 16; // buffer
+    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top, behavior: "smooth" });
   };
 
   return (
@@ -27,10 +31,10 @@ export default function Hero() {
         transition={{ duration: 1, delay: 0.15 }}
       />
 
-      {/* name */}
+      {/* heading */}
       <motion.h1
         className="relative z-10 font-bold leading-tight tracking-tight
-                   text-[clamp(2.5rem,6vw,4.5rem)] mb-4"
+                   text-[clamp(2.5rem,6vw,4.5rem)] mb-4 text-gray-900 dark:text-white"
         initial={{ scale: 0.96 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.6 }}
@@ -41,11 +45,11 @@ export default function Hero() {
         </span>
       </motion.h1>
 
-      {/* subtitle */}
+      {/* subheading */}
       <motion.p
-        className="relative z-10 text-[clamp(1.1rem,2.3vw,1.4rem)] 
-                   font-medium text-gray-800 dark:text-gray-100 
-                   max-w-2xl leading-snug mb-4"
+        className="relative z-10 text-[clamp(1.1rem,2.3vw,1.4rem)]
+                   font-medium text-gray-800 dark:text-gray-100
+                   max-w-3xl leading-snug mb-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.25, duration: 0.6 }}
@@ -55,18 +59,18 @@ export default function Hero() {
 
       {/* description */}
       <motion.p
-        className="relative z-10 text-[clamp(1rem,2vw,1.2rem)] 
-                   text-gray-600 dark:text-gray-400 
-                   max-w-2xl leading-relaxed mb-10"
+        className="relative z-10 text-[clamp(1rem,2vw,1.2rem)]
+                   text-gray-600 dark:text-gray-400
+                   max-w-3xl leading-relaxed mb-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.35, duration: 0.6 }}
       >
-        I specialize in building modern, responsive frontends and integrating AI 
+        I specialize in building modern, responsive frontends and integrating AI
         to enhance user experiences.
       </motion.p>
 
-      {/* button */}
+      {/* CTA */}
       <motion.a
         href="#projects"
         onClick={(e) => {
@@ -88,3 +92,4 @@ export default function Hero() {
     </motion.section>
   );
 }
+
