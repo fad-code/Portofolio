@@ -9,7 +9,7 @@ function ProjectVisual({ project }) {
 
   if (project.image) {
     return (
-      <div className="w-full h-full p-5">
+      <div className="w-full h-full p-4 sm:p-5">
         <div className="w-full h-full rounded-2xl overflow-hidden shadow-lg border border-black/5 dark:border-white/10 bg-white/60 dark:bg-white/5">
           <img
             src={project.image}
@@ -23,9 +23,9 @@ function ProjectVisual({ project }) {
   }
 
   return (
-    <div className="w-full h-full flex items-center justify-center p-8">
-      <div className="rounded-2xl bg-pink-50 dark:bg-pink-500/10 p-10 border border-black/5 dark:border-white/10">
-        <Icon className="w-28 h-28 text-pink-600 dark:text-pink-400" />
+    <div className="w-full h-full flex items-center justify-center p-6 sm:p-8">
+      <div className="rounded-2xl bg-pink-50 dark:bg-pink-500/10 p-8 sm:p-10 border border-black/5 dark:border-white/10">
+        <Icon className="w-20 h-20 sm:w-28 sm:h-28 text-pink-600 dark:text-pink-400" />
       </div>
     </div>
   );
@@ -89,7 +89,6 @@ const projects = [
   },
 ];
 
-
 export default function Projects() {
   const [center, setCenter] = useState(0);
 
@@ -110,6 +109,10 @@ export default function Projects() {
   });
 
   const getWindow = () => {
+    // Mobile: show ONLY the centered card
+    if (typeof window !== "undefined" && window.innerWidth < 640) return [center];
+
+    // Desktop/tablet: show 3 cards
     if (projects.length < 3) return projects.map((_, i) => i);
     const l = (center - 1 + projects.length) % projects.length;
     const c = center % projects.length;
@@ -127,8 +130,9 @@ export default function Projects() {
       <h2 className="text-3xl sm:text-4xl font-bold text-center mb-2">Projects</h2>
 
       <div className="w-full relative">
+        {/* Arrows: now visible on mobile too (smaller + higher z) */}
         <button
-          className="hidden sm:flex items-center justify-center absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/80 dark:bg-gray-700/80 shadow hover:scale-110 transition z-10"
+          className="flex items-center justify-center absolute left-2 sm:left-3 top-[42%] sm:top-1/2 -translate-y-1/2 h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-white/80 dark:bg-gray-700/80 shadow hover:scale-110 transition z-30"
           onClick={prev}
           aria-label="Previous"
         >
@@ -136,7 +140,7 @@ export default function Projects() {
         </button>
 
         <div
-          className="mx-auto w-full max-w-[1440px] flex justify-center items-center gap-6 select-none px-3"
+          className="mx-auto w-full max-w-[1440px] flex justify-center items-center gap-4 sm:gap-6 select-none px-2 sm:px-3"
           {...handlers}
         >
           {windowIdx.map((idx, i) => {
@@ -146,26 +150,29 @@ export default function Projects() {
             const chips = (p.highlights || []).slice(0, 3);
             const remaining = (p.highlights?.length || 0) - chips.length;
 
+            // On mobile, only 1 card -> treat it as centered
+            const isCentered = windowIdx.length === 1 ? true : i === 1;
+
             return (
               <motion.article
                 key={idx}
                 className={`bg-white dark:bg-gray-700 rounded-3xl shadow-2xl overflow-hidden flex-shrink-0 transition-all duration-300 ${
-                  i === 1 ? "scale-105 z-20" : "scale-95 opacity-85 z-10"
+                  isCentered ? "scale-100 sm:scale-105 z-20" : "scale-95 opacity-85 z-10"
                 }`}
                 style={{
-                  width: "420px",
-                  height: "580px",
-                  pointerEvents: i === 1 ? "auto" : "none",
+                  width: "min(92vw, 380px)",
+                  height: "520px",
+                  pointerEvents: isCentered ? "auto" : "none",
                 }}
-                whileHover={i === 1 ? { scale: 1.07 } : {}}
+                whileHover={isCentered ? { scale: 1.03 } : {}}
               >
-                {/* Top visual (dipendekin biar ruang bawah nambah) */}
-                <div className="h-[260px]">
+                {/* Visual */}
+                <div className="h-[220px] sm:h-[260px]">
                   <ProjectVisual project={p} />
                 </div>
 
-                {/* Bottom content (tambah padding bawah) */}
-                <div className="flex-1 flex flex-col p-6 pb-12 text-center">
+                {/* Content */}
+                <div className="flex-1 flex flex-col p-5 sm:p-6 pb-8 sm:pb-12 text-center">
                   <div>
                     <h3 className="text-xl sm:text-2xl font-semibold mb-1">{p.title}</h3>
 
@@ -175,12 +182,12 @@ export default function Projects() {
                       </p>
                     )}
 
-                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-snug mx-auto max-w-[44ch] max-h-[3.6rem] overflow-hidden">
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-snug mx-auto max-w-[44ch] max-h-[4.2rem] overflow-hidden">
                       {p.desc}
                     </p>
 
                     {(p.highlights?.length || 0) > 0 ? (
-                      <div className="mt-5 mb-7 flex flex-wrap gap-2 justify-center max-h-[4.2rem] overflow-hidden">
+                      <div className="mt-4 sm:mt-5 mb-5 sm:mb-7 flex flex-wrap gap-2 justify-center max-h-[4.6rem] overflow-hidden">
                         {chips.map((t) => (
                           <span
                             key={t}
@@ -196,16 +203,15 @@ export default function Projects() {
                         )}
                       </div>
                     ) : (
-                      <div className="mb-7" />
+                      <div className="mb-6" />
                     )}
                   </div>
 
-                  {/* Button dinaikin lebih kerasa */}
                   <a
                     href={p.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-auto mb-6 mx-auto inline-flex items-center justify-center gap-2 rounded-full bg-pink-600 px-6 py-3 text-base font-semibold text-white shadow-lg hover:bg-pink-700 hover:scale-105 hover:shadow-pink-400/50 transition-all focus:outline-none focus:ring-4 focus:ring-pink-300 dark:focus:ring-pink-600"
+                    className="mt-auto mx-auto inline-flex items-center justify-center gap-2 rounded-full bg-pink-600 px-6 py-3 text-base font-semibold text-white shadow-lg hover:bg-pink-700 hover:scale-105 hover:shadow-pink-400/50 transition-all focus:outline-none focus:ring-4 focus:ring-pink-300 dark:focus:ring-pink-600"
                   >
                     {cta}
                     <ArrowRight className="w-5 h-5" />
@@ -217,7 +223,7 @@ export default function Projects() {
         </div>
 
         <button
-          className="hidden sm:flex items-center justify-center absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-white/80 dark:bg-gray-700/80 shadow hover:scale-110 transition z-10"
+          className="flex items-center justify-center absolute right-2 sm:right-3 top-[42%] sm:top-1/2 -translate-y-1/2 h-9 w-9 sm:h-10 sm:w-10 rounded-full bg-white/80 dark:bg-gray-700/80 shadow hover:scale-110 transition z-30"
           onClick={next}
           aria-label="Next"
         >
