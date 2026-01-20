@@ -35,7 +35,7 @@ const projects = [
   {
     title: "Nibiru",
     icon: Shirt,
-    image: "/pictures/nibiru.png",
+    image: "public/pictures/nibiru.png",
     link: "https://nibiru-rouge.vercel.app/",
     ctaLabel: "Open Website",
     stack: "Next.js • Tailwind • Responsive UI",
@@ -46,7 +46,7 @@ const projects = [
   {
     title: "Garuda (Flight Booking)",
     icon: Plane,
-    image: "/pictures/garuda.png",
+    image: "public/pictures/garuda.png",
     link: "https://github.com/fad-code/garuda",
     ctaLabel: "View GitHub",
     stack: "Laravel • PHP • Payment Gateway",
@@ -57,7 +57,7 @@ const projects = [
   {
     title: "Kamar Merona",
     icon: Shirt,
-    image: "/pictures/kamar-merona.png",
+    image: "public/pictures/kamar-merona.png",
     link: "https://kamarmerona.vercel.app/",
     ctaLabel: "Open Website",
     stack: "Next.js • Tailwind • UI Polish",
@@ -68,7 +68,7 @@ const projects = [
   {
     title: "Vans Rental",
     icon: Car,
-    image: "/pictures/van.png",
+    image: "public/pictures/van.png",
     link: "https://vanku.vercel.app/",
     ctaLabel: "View Project",
     stack: "React • UI Flow",
@@ -79,7 +79,7 @@ const projects = [
   {
     title: "Chef AI",
     icon: ChefHat,
-    image: "/pictures/chefku.png",
+    image: "public/pictures/chefku.png",
     link: "https://chefku.vercel.app/",
     ctaLabel: "View Project",
     stack: "React • Prompt UI",
