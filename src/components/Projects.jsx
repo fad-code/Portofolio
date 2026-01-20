@@ -35,7 +35,7 @@ const projects = [
   {
     title: "Nibiru",
     icon: Shirt,
-    image: "public/pictures/nibiru.png",
+    image: "/pictures/nibiru.png",
     link: "https://nibiru-rouge.vercel.app/",
     ctaLabel: "Open Website",
     stack: "Next.js • Tailwind • Responsive UI",
@@ -46,7 +46,7 @@ const projects = [
   {
     title: "Garuda (Flight Booking)",
     icon: Plane,
-    image: "public/pictures/garuda.png",
+    image: "/pictures/garuda.png",
     link: "https://github.com/fad-code/garuda",
     ctaLabel: "View GitHub",
     stack: "Laravel • PHP • Payment Gateway",
@@ -57,7 +57,7 @@ const projects = [
   {
     title: "Kamar Merona",
     icon: Shirt,
-    image: "public/pictures/kamar-merona.png",
+    image: "/pictures/kamar-merona.png",
     link: "https://kamarmerona.vercel.app/",
     ctaLabel: "Open Website",
     stack: "Next.js • Tailwind • UI Polish",
@@ -68,7 +68,7 @@ const projects = [
   {
     title: "Vans Rental",
     icon: Car,
-    image: "public/pictures/van.png",
+    image: "/pictures/van.png",
     link: "https://vanku.vercel.app/",
     ctaLabel: "View Project",
     stack: "React • UI Flow",
@@ -79,7 +79,7 @@ const projects = [
   {
     title: "Chef AI",
     icon: ChefHat,
-    image: "public/pictures/chefku.png",
+    image: "/pictures/chefku.png",
     link: "https://chefku.vercel.app/",
     ctaLabel: "View Project",
     stack: "React • Prompt UI",
@@ -88,6 +88,7 @@ const projects = [
     highlights: ["Prompt UI", "Recipe output", "Simple UX"],
   },
 ];
+
 
 export default function Projects() {
   const [center, setCenter] = useState(0);
